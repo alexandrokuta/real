@@ -1,0 +1,9 @@
+= form_with model:@message, local: true do |f|
+  .form-group
+    =f.text_field :content, class: 'form-control'
+  .form-group
+    =f.file_field :image,  class: 'form-control'
+  =f.submit class:'btn btn-primary',value: '送信'
+
+.message__box
+
