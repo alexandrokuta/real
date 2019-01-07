@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_05_111004) do
+ActiveRecord::Schema.define(version: 2019_01_07_072459) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -34,9 +34,22 @@ ActiveRecord::Schema.define(version: 2019_01_05_111004) do
   end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "content"
+    t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "image"
+    t.bigint "user_id"
+    t.bigint "room_id"
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -53,4 +66,7 @@ ActiveRecord::Schema.define(version: 2019_01_05_111004) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users"
+  add_foreign_key "rooms", "users"
 end

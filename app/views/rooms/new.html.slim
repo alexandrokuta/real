@@ -1,0 +1,5 @@
+.form_content
+  = form_with model:@room, local: true do |f|
+    .form-group
+      =f.text_field :name, class: 'form-control'
+    =f.submit class:'btn btn-primary',value: '送信'

@@ -1,11 +1,8 @@
-.message__wrapper
-  .message__content
 .form_content
   = form_with model:@message, local: true do |f|
-    .form-group
+    .form-group data-behavior='chat_room_channel'
       =f.text_field :content, class: 'form-control'
       =f.hidden_field :id
     .form-group
       =f.file_field :image,  class: 'form-control'
     =f.submit class:'btn btn-primary',value: '送信'
-

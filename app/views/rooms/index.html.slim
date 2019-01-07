@@ -1,0 +1,9 @@
+.container
+  - if flash.notice.present?
+    .alert.alert-succes=flash.notice
+.navibar__head
+  .navibar__room= link_to 'ルーム作成',new_room_path
+.room__wrapper
+  - @rooms.each do |room|
+    .room__box
+      span.room__name =link_to room.name,room_path(room)

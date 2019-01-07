@@ -16,8 +16,9 @@
 //= require turbolinks
 //= require_tree .
 function buildHtml(data) {
-  var html =`<div class="message__cover", data-id=${data.id}>
+  var html =`<div class="message__cover" data-id=${data.id}>
               <p class="message">${data.message}</p>
             </div>`
             $('.message__content').append(html);
+            $('.message__content').animate({scrollTop: $('.message__content')[0].scrollHeight});
 }

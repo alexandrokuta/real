@@ -1,4 +1,6 @@
-App.chat_room = App.cable.subscriptions.create "ChatRoomChannel",
+$(document).ready ->
+  id = $('.message__wrapper').data('room_id');
+App.chat_room = App.cable.subscriptions.create { channel: "ChatRoomChannel", room_id: id},
   connected: ->
     # Called when the subscription is ready for use on the server
 
@@ -11,3 +13,4 @@ App.chat_room = App.cable.subscriptions.create "ChatRoomChannel",
 
   speak:(message) ->
     @perform 'speak', message:message
+

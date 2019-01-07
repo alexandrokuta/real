@@ -1,0 +1,5 @@
+.message__wrapper data-room_id='#{room.id}'
+  .message__content
+    - messages.each do |message|
+      .message__cover data-id='#{message.id}'
+        p.message =message.content
